@@ -1,6 +1,6 @@
 namespace Redactor_IP
 {
-    partial class Form1
+    partial class MainScreen
     {
         /// <summary>
         /// Required designer variable.
@@ -28,9 +28,18 @@ namespace Redactor_IP
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            this.SuspendLayout();
+            // 
+            // MainScreen
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Text = "Form1";
+            this.ClientSize = new System.Drawing.Size(292, 273);
+            this.Name = "MainScreen";
+            this.Text = "MainScreen";
+            this.MouseClick += new System.Windows.Forms.MouseEventHandler(this.MainScreen_MouseClick);
+            this.ResumeLayout(false);
+
         }
 
         #endregion
