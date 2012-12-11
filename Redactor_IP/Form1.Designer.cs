@@ -38,6 +38,7 @@ namespace Redactor_IP
             this.Name = "MainScreen";
             this.Text = "MainScreen";
             this.MouseClick += new System.Windows.Forms.MouseEventHandler(this.MainScreen_MouseClick);
+            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MainScreen_MouseDown);
             this.ResumeLayout(false);
 
         }
