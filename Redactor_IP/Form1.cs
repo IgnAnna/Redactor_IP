@@ -16,6 +16,7 @@ namespace Redactor_IP
         Pen pMain = new Pen(Color.Blue);
         bool IsShapeStart = true;
         Point Shapestart;
+        string file = " ";
 
 
         public MainScreen()
@@ -64,6 +65,43 @@ namespace Redactor_IP
         private void Cross_Line_Changed(object sender, EventArgs e)
         {
             IsShapeStart = true;
+        }
+
+        private void openToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                file = openFileDialog1.FileName;
+                StreamReader sr = new StreamReader(file);
+                while (!sr.EndOfStream)
+                {
+                    string type = sr.ReadLine();
+                    switch (type)
+                    {
+                        case "Cross":
+                            Shapes.Add(new Cross(sr));
+                            break;
+                        case "Line":
+                            Shapes.Add(new Line(sr));
+                            break;
+                    }
+                }
+                this.Refresh();
+            }
+        }
+
+        private void saveAsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                file = saveFileDialog1.FileName; ;
+                StreamWriter sw = new StreamWriter(file);
+                foreach (Shape p in this.Shapes)
+                {
+                    p.SaveTo(sw);
+                }
+                sw.Close();
+            }
         }
     }
 }

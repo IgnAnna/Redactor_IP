@@ -12,6 +12,7 @@ namespace Redactor_IP
     public abstract class Shape
     {
         public abstract void DrawWith(Graphics e, Pen p);
+        public abstract void SaveTo(StreamWriter sw);
     }
     public class Cross : Shape
     {
@@ -37,6 +38,11 @@ namespace Redactor_IP
             g.DrawLine(p, this.X - 3, this.Y - 3, this.X + 3, this.Y + 3);
             g.DrawLine(p, this.X + 3, this.Y - 3, this.X - 3, this.Y + 3);
         }
+        public override void SaveTo(StreamWriter sw)
+        {
+            sw.WriteLine("Cross");
+            sw.WriteLine(Convert.ToString(this.X) + " " + Convert.ToString(this.Y));
+        }
     }
     public class Line : Shape
     {
@@ -46,9 +52,26 @@ namespace Redactor_IP
             this.s = _s;
             this.f = _f;
         }
+        public Line(StreamReader sr)
+        {
+            string line = sr.ReadLine();
+            string line1 = sr.ReadLine();
+            string[] foo = line.Split(' ');
+            string[] foo1 = line1.Split(' ');
+            s.X = Convert.ToInt32(foo[0]);
+            s.Y = Convert.ToInt32(foo[1]);
+            f.X = Convert.ToInt32(foo1[0]);
+            f.Y = Convert.ToInt32(foo1[1]);
+        }
         public override void DrawWith(Graphics g, Pen p)
         {
             g.DrawLine(p, s, f);
+        }
+        public override void SaveTo(StreamWriter sw)
+        {
+            sw.WriteLine("Line");
+            sw.WriteLine(Convert.ToString(s.X) + " " + Convert.ToString(s.Y));
+            sw.WriteLine(Convert.ToString(f.X) + " " + Convert.ToString(f.Y));
         }
     }
 }
