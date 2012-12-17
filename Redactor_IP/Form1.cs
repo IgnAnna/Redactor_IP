@@ -4,7 +4,6 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Text;
-//using System.Linq;
 using System.Windows.Forms;
 using System.IO;
 
@@ -15,6 +14,8 @@ namespace Redactor_IP
         public Shape tempShape;
         List<Shape> Shapes = new List<Shape>();
         Pen pMain = new Pen(Color.Blue);
+        bool IsShapeStart = true;
+        Point Shapestart;
 
 
         public MainScreen()
@@ -35,10 +36,22 @@ namespace Redactor_IP
 
         private void MainScreen_MouseDown(object sender, MouseEventArgs e)
         {
-            tempShape = new Cross(e.X, e.Y);
-            AddShape(tempShape);
-            tempShape = null;
-            //hapeStart = false;
+            if (Cross.Checked)
+            {
+                tempShape = new Cross(e.X, e.Y);
+                AddShape(tempShape);
+                tempShape = null;
+                this.Refresh();
+            }
+            if (Line.Checked)
+            {
+                if (IsShapeStart)
+                {
+                    Shapestart = e.Location;
+                }
+                else AddShape(new Line(Shapestart,e.Location));
+                IsShapeStart = !IsShapeStart;
+            }
             this.Refresh();
         }
 
@@ -46,6 +59,11 @@ namespace Redactor_IP
         {
             foreach (Shape kr in this.Shapes)
                 kr.DrawWith(e.Graphics, pMain);
+        }
+
+        private void Cross_Line_Changed(object sender, EventArgs e)
+        {
+            IsShapeStart = true;
         }
     }
 }

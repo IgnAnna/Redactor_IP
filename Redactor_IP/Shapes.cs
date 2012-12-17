@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-//using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.IO;
@@ -37,6 +36,19 @@ namespace Redactor_IP
         {
             g.DrawLine(p, this.X - 3, this.Y - 3, this.X + 3, this.Y + 3);
             g.DrawLine(p, this.X + 3, this.Y - 3, this.X - 3, this.Y + 3);
+        }
+    }
+    public class Line : Shape
+    {
+        Point s, f;
+        public Line(Point _s, Point _f)
+        {
+            this.s = _s;
+            this.f = _f;
+        }
+        public override void DrawWith(Graphics g, Pen p)
+        {
+            g.DrawLine(p, s, f);
         }
     }
 }
