@@ -37,6 +37,7 @@ namespace Redactor_IP
             this.ClientSize = new System.Drawing.Size(292, 273);
             this.Name = "MainScreen";
             this.Text = "MainScreen";
+            this.Paint += new System.Windows.Forms.PaintEventHandler(this.MainScreen_Paint);
             this.MouseClick += new System.Windows.Forms.MouseEventHandler(this.MainScreen_MouseClick);
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MainScreen_MouseDown);
             this.ResumeLayout(false);

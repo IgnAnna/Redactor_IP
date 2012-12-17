@@ -14,6 +14,8 @@ namespace Redactor_IP
     {
         public Shape tempShape;
         List<Shape> Shapes = new List<Shape>();
+        Pen pMain = new Pen(Color.Blue);
+
 
         public MainScreen()
         {
@@ -36,8 +38,14 @@ namespace Redactor_IP
             tempShape = new Cross(e.X, e.Y);
             AddShape(tempShape);
             tempShape = null;
-            //ShapeStart = false;
+            //hapeStart = false;
             this.Refresh();
+        }
+
+        private void MainScreen_Paint(object sender, PaintEventArgs e)
+        {
+            foreach (Shape kr in this.Shapes)
+                kr.DrawWith(e.Graphics, pMain);
         }
     }
 }
