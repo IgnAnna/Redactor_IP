@@ -42,13 +42,14 @@ namespace Redactor_IP
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
+            this.ShapesList = new System.Windows.Forms.ListBox();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // Cross
             // 
             this.Cross.AutoSize = true;
-            this.Cross.Location = new System.Drawing.Point(211, 170);
+            this.Cross.Location = new System.Drawing.Point(424, 225);
             this.Cross.Name = "Cross";
             this.Cross.Size = new System.Drawing.Size(67, 17);
             this.Cross.TabIndex = 0;
@@ -60,7 +61,7 @@ namespace Redactor_IP
             // Line
             // 
             this.Line.AutoSize = true;
-            this.Line.Location = new System.Drawing.Point(211, 194);
+            this.Line.Location = new System.Drawing.Point(424, 248);
             this.Line.Name = "Line";
             this.Line.Size = new System.Drawing.Size(57, 17);
             this.Line.TabIndex = 1;
@@ -75,7 +76,7 @@ namespace Redactor_IP
             this.fileToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(292, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(503, 24);
             this.menuStrip1.TabIndex = 2;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -144,11 +145,21 @@ namespace Redactor_IP
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
+            // ShapesList
+            // 
+            this.ShapesList.FormattingEnabled = true;
+            this.ShapesList.Location = new System.Drawing.Point(12, 27);
+            this.ShapesList.Name = "ShapesList";
+            this.ShapesList.Size = new System.Drawing.Size(175, 251);
+            this.ShapesList.TabIndex = 3;
+            this.ShapesList.SelectedIndexChanged += new System.EventHandler(this.ShapesList_SelectedIndexChanged);
+            // 
             // MainScreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(292, 273);
+            this.ClientSize = new System.Drawing.Size(503, 322);
+            this.Controls.Add(this.ShapesList);
             this.Controls.Add(this.Line);
             this.Controls.Add(this.Cross);
             this.Controls.Add(this.menuStrip1);
@@ -181,6 +192,7 @@ namespace Redactor_IP
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
+        private System.Windows.Forms.ListBox ShapesList;
     }
 }
 

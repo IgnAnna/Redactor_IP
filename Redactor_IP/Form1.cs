@@ -15,10 +15,12 @@ namespace Redactor_IP
         List<Shape> Shapes = new List<Shape>();
         Pen pMain = new Pen(Color.Blue);
         Pen pTemp = new Pen(Color.Purple);
+        Pen pch = new Pen(Color.Blue, 2);
         bool IsShapeStart = false;
         Point Shapestart;
         string file = " ";
         Point koor = new Point();
+
 
 
         public MainScreen()
@@ -45,16 +47,21 @@ namespace Redactor_IP
                 AddShape(tempShape);
                 tempShape = null;
                 this.Refresh();
+                ShapesList.Items.Add("Cross" + Convert.ToString(e.Location)); 
             }
             if (Line.Checked)
             {
                 IsShapeStart = !IsShapeStart;
-                
                 if (IsShapeStart)
                 {
                     Shapestart = e.Location;
+
                 }
-                else AddShape(new Line(Shapestart,e.Location));
+                else
+                {
+                    ShapesList.Items.Add("Line" + " " + Shapestart + " " + e.Location);
+                    AddShape(new Line(Shapestart, e.Location)); 
+                }
             }
             this.Refresh();
         }
@@ -64,6 +71,10 @@ namespace Redactor_IP
             if (tempShape != null)
             {
                 tempShape.DrawWith(e.Graphics, pTemp);
+            }
+            foreach (int i in ShapesList.SelectedIndices)
+            {
+                Shapes[i].DrawWith(e.Graphics, pch);
             }
             foreach (Shape kr in this.Shapes)
             { 
@@ -130,6 +141,11 @@ namespace Redactor_IP
                 this.Refresh();
             }
 
+        }
+
+        private void ShapesList_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            this.Refresh();
         }
     }
 }
