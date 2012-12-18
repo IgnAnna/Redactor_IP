@@ -151,6 +151,7 @@ namespace Redactor_IP
             this.ShapesList.FormattingEnabled = true;
             this.ShapesList.Location = new System.Drawing.Point(12, 27);
             this.ShapesList.Name = "ShapesList";
+            this.ShapesList.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
             this.ShapesList.Size = new System.Drawing.Size(175, 251);
             this.ShapesList.TabIndex = 3;
             this.ShapesList.SelectedIndexChanged += new System.EventHandler(this.ShapesList_SelectedIndexChanged);
