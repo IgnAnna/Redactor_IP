@@ -14,9 +14,11 @@ namespace Redactor_IP
         public Shape tempShape;
         List<Shape> Shapes = new List<Shape>();
         Pen pMain = new Pen(Color.Blue);
-        bool IsShapeStart = true;
+        Pen pTemp = new Pen(Color.Purple);
+        bool IsShapeStart = false;
         Point Shapestart;
         string file = " ";
+        Point koor = new Point();
 
 
         public MainScreen()
@@ -46,25 +48,33 @@ namespace Redactor_IP
             }
             if (Line.Checked)
             {
+                IsShapeStart = !IsShapeStart;
+                
                 if (IsShapeStart)
                 {
                     Shapestart = e.Location;
                 }
                 else AddShape(new Line(Shapestart,e.Location));
-                IsShapeStart = !IsShapeStart;
             }
             this.Refresh();
         }
 
         private void MainScreen_Paint(object sender, PaintEventArgs e)
         {
+            if (tempShape != null)
+            {
+                tempShape.DrawWith(e.Graphics, pTemp);
+            }
             foreach (Shape kr in this.Shapes)
-                kr.DrawWith(e.Graphics, pMain);
+            { 
+                kr.DrawWith(e.Graphics, pMain); 
+            }
+          
         }
 
         private void Cross_Line_Changed(object sender, EventArgs e)
         {
-            IsShapeStart = true;
+            IsShapeStart = false;
         }
 
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
@@ -102,6 +112,24 @@ namespace Redactor_IP
                 }
                 sw.Close();
             }
+        }
+
+        private void MainScreen_MouseMove(object sender, MouseEventArgs e)
+        {
+            Point TempPoint = e.Location;
+            this.Refresh();
+            if (Cross.Checked)
+            {
+                tempShape = new Cross(e.X, e.Y);
+                this.Refresh();
+            }
+            else if (Line.Checked)
+            {
+                if (!IsShapeStart) return;
+                tempShape = new Line(Shapestart, TempPoint);
+                this.Refresh();
+            }
+
         }
     }
 }
