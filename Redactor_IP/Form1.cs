@@ -147,5 +147,15 @@ namespace Redactor_IP
         {
             this.Refresh();
         }
+
+        private void Delete_Click(object sender, EventArgs e)
+        {
+            while (ShapesList.SelectedIndices.Count > 0)
+            {
+                Shapes.RemoveAt(ShapesList.SelectedIndices[0]);
+                ShapesList.Items.RemoveAt(ShapesList.SelectedIndices[0]);
+            }
+            this.Refresh();
+        }
     }
 }

@@ -43,6 +43,7 @@ namespace Redactor_IP
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.ShapesList = new System.Windows.Forms.ListBox();
+            this.Delete = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -154,11 +155,22 @@ namespace Redactor_IP
             this.ShapesList.TabIndex = 3;
             this.ShapesList.SelectedIndexChanged += new System.EventHandler(this.ShapesList_SelectedIndexChanged);
             // 
+            // Delete
+            // 
+            this.Delete.Location = new System.Drawing.Point(296, 248);
+            this.Delete.Name = "Delete";
+            this.Delete.Size = new System.Drawing.Size(75, 23);
+            this.Delete.TabIndex = 4;
+            this.Delete.Text = "Delete";
+            this.Delete.UseVisualStyleBackColor = true;
+            this.Delete.Click += new System.EventHandler(this.Delete_Click);
+            // 
             // MainScreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(503, 322);
+            this.Controls.Add(this.Delete);
             this.Controls.Add(this.ShapesList);
             this.Controls.Add(this.Line);
             this.Controls.Add(this.Cross);
@@ -193,6 +205,7 @@ namespace Redactor_IP
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
         private System.Windows.Forms.ListBox ShapesList;
+        private System.Windows.Forms.Button Delete;
     }
 }
 
