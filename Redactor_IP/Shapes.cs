@@ -13,13 +13,13 @@ namespace Redactor_IP
     {
         public abstract void DrawWith(Graphics e, Pen p);
         public abstract void SaveTo(StreamWriter sw);
+        public abstract string Info();
     }
     public class Cross : Shape
     {
         public int X;
         public int Y;
         public string line;
-
 
         public Cross(int _X, int _Y)
         {
@@ -43,7 +43,12 @@ namespace Redactor_IP
             sw.WriteLine("Cross");
             sw.WriteLine(Convert.ToString(this.X) + " " + Convert.ToString(this.Y));
         }
+        public override string Info()
+        {
+            return "Cross" + " X = " + X + " Y = " + Y;
+        }
     }
+
     public class Line : Shape
     {
         Point s, f;
@@ -72,6 +77,10 @@ namespace Redactor_IP
             sw.WriteLine("Line");
             sw.WriteLine(Convert.ToString(s.X) + " " + Convert.ToString(s.Y));
             sw.WriteLine(Convert.ToString(f.X) + " " + Convert.ToString(f.Y));
+        }
+        public override string Info()
+        {
+            return "Line" + " " + s + " " + f;
         }
     }
 }

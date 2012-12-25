@@ -29,14 +29,13 @@ namespace Redactor_IP
         }
         private void AddShape(Shape shape)
         {
-            if (shape != null) Shapes.Add(shape);
-
+            Shapes.Add(shape);
+            ShapesList.Items.Add(tempShape.Info());
         }
 
         private void MainScreen_MouseClick(object sender, MouseEventArgs e)
         {
             this.Text = e.X + ";" + e.Y;
-           
         }
 
         private void MainScreen_MouseDown(object sender, MouseEventArgs e)
@@ -47,7 +46,6 @@ namespace Redactor_IP
                 AddShape(tempShape);
                 tempShape = null;
                 this.Refresh();
-                ShapesList.Items.Add("Cross" + Convert.ToString(e.Location)); 
             }
             if (Line.Checked)
             {
@@ -55,11 +53,9 @@ namespace Redactor_IP
                 if (IsShapeStart)
                 {
                     Shapestart = e.Location;
-
                 }
                 else
                 {
-                    ShapesList.Items.Add("Line" + " " + Shapestart + " " + e.Location);
                     AddShape(new Line(Shapestart, e.Location)); 
                 }
             }
@@ -72,15 +68,14 @@ namespace Redactor_IP
             {
                 tempShape.DrawWith(e.Graphics, pTemp);
             }
+            foreach (Shape kr in this.Shapes)
+            {
+                kr.DrawWith(e.Graphics, pMain);
+            }
             foreach (int i in ShapesList.SelectedIndices)
             {
                 Shapes[i].DrawWith(e.Graphics, pch);
             }
-            foreach (Shape kr in this.Shapes)
-            { 
-                kr.DrawWith(e.Graphics, pMain); 
-            }
-          
         }
 
         private void Cross_Line_Changed(object sender, EventArgs e)
@@ -140,7 +135,6 @@ namespace Redactor_IP
                 tempShape = new Line(Shapestart, TempPoint);
                 this.Refresh();
             }
-
         }
 
         private void ShapesList_SelectedIndexChanged(object sender, EventArgs e)
